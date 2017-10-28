@@ -8,6 +8,7 @@ import { setMood } from "../store";
 
 //semantic ui components
 import { Input } from "semantic-ui-react";
+import MoodCard from './mood-card';
 
 // import giphy from 'giphy-api';
 
@@ -36,24 +37,21 @@ export default class MoodInput extends Component {
     const currentMood = this.state.moodInput;
     const sentimentValue = sentiment(currentMood);
     console.dir(sentimentValue);
+
+
+
+this.setState({ currentMood, sentimentValue});
+this.setState({ moodInput:''});
+
+const sentimentWord = sentimentValue.words.toString();
+
+console.log('passed to GIPHY', currentMood)
+giphy.translate(currentMood)
+.then(res => console.dir(res.data))
+.then(data => this.setState({gifUrl: data.bitly_gif_url}))
+
     
-    this.setState({ currentMood, sentimentValue});
-    this.setState({ moodInput:''});
-
-    const sentimentWord = sentimentValue.words.toString();
-
-    // console.log('passed to GIPHY', currentMood)
-    // giphy.translate(currentMood)
-    // .then(res => console.dir(res.data))
-    // .then(data => this.setState({gifUrl: data.bitly_gif_url}))
-
-    // console.log('passed to GIPHY', sentimentWord)
-//     async function result() {
-//         await giphy.translate(sentimentWord);
-
-//     // .then(res => console.dir(res.data))
-//     // .then(data => this.setState({gifUrl2: data.bitly_gif_url})) 
-//   }
+    
 
   
 }
@@ -71,11 +69,19 @@ export default class MoodInput extends Component {
         <form onSubmit={this.handleSubmit} >
           <Input  fluid name="mood" value={moodInput} onChange={this.handleChange} placeholder="How are you feeling today?" />
         </form>
-        <h2>Your Mood Is: {currentMood }</h2>
-        {this.state.gifUrl1 ? null : <img src={this.state.gifUrl} />}
-        {this.state.gifUrl2 ? null : <img src={this.state.gifUrl2} />}
-    
+        {/* <Image src='https://giphy.com/embed/BqJc5y7Oq6wPS' /> */}
+        {/* import component for the mood */}
+        <MoodCard />
       </div>
     );
   }
 }
+
+
+// // console.log('passed to GIPHY', sentimentWord)
+// //     async function result() {
+// //         await giphy.translate(sentimentWord);
+
+// //     // .then(res => console.dir(res.data))
+// //     // .then(data => this.setState({gifUrl2: data.bitly_gif_url})) 
+// //   }
