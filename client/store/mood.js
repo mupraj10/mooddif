@@ -4,56 +4,69 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const SET_MOOD = 'SET_MOOD'
+const GET_MOOD_LIST = 'GET_MOOD_LIST'
+const GET_SINGLE_MOOD = "GET_SINGLE_MOOD"
+
 
 /**
  * INITIAL STATE
  */
-const initialState = {moodInput:''}
+const initialState = {
+  moodList:[],
+  singleMood:{}
+}
 
 /**
  * ACTION CREATORS
  */
-export const setMood = (mood) => ({type: SET_MOOD, mood})
+const getSingleMood = (mood) => ({type: GET_SINGLE_MOOD, mood})
 
+const getMoodList = (moodList) => ({type: GET_MOOD_LIST, moodList})
 
 /**
  * THUNK CREATORS
  */
-export const me1 = () =>
-  dispatch =>
-    axios.get('/auth/me')
-      .then(res =>
-        dispatch(getUser(res.data || defaultUser)))
-      .catch(err => console.log(err))
-      
 
-export const saveMood = (mood) =>
+export const fetchSingleMood = () =>
   dispatch =>
-    axios.post(`/mood`, { mood })
+    axios.get(`/api/moods`)
+    .then(res => dispatch(getSingleMood(res.data)))
+    .then(error => console.log(error));
+
+    
+export const fetchMoodList = () =>
+dispatch =>
+  axios.get(`/api/moods`)
+  .then(res => dispatch(getMoodList(res.data)))
+  // .then(error => console.error(error));
+
+
+export const createMood = (mood) =>
+ { console.log(mood)
+  return (dispatch =>
+    axios.post(`/api/moods`, {mood})
       .then(res => {
-        dispatch(setMood(res.data))
-        history.push('/home')
+        dispatch(getSingleMood(res.data))
+        // history.push('/moodhere')
       })
       .catch(error =>
-        dispatch(getUser({error})))
+        console.err(error)))}
 
-export const logout1 = () =>
-  dispatch =>
-    axios.post('/auth/logout')
-      .then(res => {
-        dispatch(removeUser())
-        history.push('/login')
-      })
-      .catch(err => console.log(err))
+
 
 /**
  * REDUCER
  */
 export default function (state = initialState, action) {
+  // let newState = Object.assign({}, state);
   switch (action.type) {
-    case SET_MOOD:
+
+    case GET_SINGLE_MOOD:
       return action.mood
+
+    case GET_MOOD_LIST:
+      return action.moodList
+
     default:
       return state
   }
