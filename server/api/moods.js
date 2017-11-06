@@ -9,8 +9,9 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  Mood.create(req.body).
-  then(mood => res.status(201).json(mood));
+  console.log('reqbody', req.body)
+  Mood.create(req.body)
+  .then(mood => res.status(201).json(mood));
 });
 
 router.delete("/:id", (req, res, next) => {

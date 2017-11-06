@@ -1,30 +1,47 @@
 import React from 'react'
+import moment from 'moment';
+
 import { Card, Icon, Image } from 'semantic-ui-react'
 
-const MoodCard = (props) => (
-
-  <Card>
-    <Image src='https://media1.giphy.com/media/Et3MF8b9XkIUg/giphy-downsized.gif' />
-    <Card.Content>
-      <Card.Header>
-        Matthew
-      </Card.Header>
-      <Card.Meta>
-        <span className='date'>
-          Joined in 2015
-        </span>
-      </Card.Meta>
+const MoodCard = (props) => {
+  return  (<Card>
+    <Image src={props.mood.gif} />
+    <Card.Content> 
       <Card.Description>
-        Matthew is a musician living in Nashville.
+      {moment(props.mood.date).format('MMMM Do YYYY')}
+      <br/> 
+        {props.mood.feeling}
+        
       </Card.Description>
     </Card.Content>
-    <Card.Content extra>
-      <a>
-        <Icon name='user' />
-        22 Friends
-      </a>
-    </Card.Content>
-  </Card>
-)
+  </Card> )
+}
 
 export default MoodCard;
+
+// <div class="tile is-ancestor">
+// <div class="tile is-parent">
+//   <article class="tile is-child box">
+//     <p class="title">One</p>
+//     <p class="subtitle">Subtitle</p>
+//   </article>
+// </div>
+// <div class="tile is-parent">
+//   <article class="tile is-child box">
+//     <p class="title">Two</p>
+//     <p class="subtitle">Subtitle</p>
+//   </article>
+// </div>
+// <div class="tile is-parent">
+//   <article class="tile is-child box">
+//     <p class="title">Three</p>
+//     <p class="subtitle">Subtitle</p>
+//   </article>
+// </div>
+// <div class="tile is-parent">
+//   <article class="tile is-child box">
+//     <p class="title">Four</p>
+//     <p class="subtitle">Subtitle</p>
+//   </article>
+// </div>
+// </div>

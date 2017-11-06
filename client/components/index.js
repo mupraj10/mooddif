@@ -7,3 +7,5 @@ export {default as Main} from './main'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
 export {default as MoodInput} from './mood-input';
+export {default as Gallery} from './gallery';
+

@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+const giphy = require('giphy-api')('h2eVXfaZ7LbgsC9Xt8313wsWJMp4uebj');
+
 const Mood = db.define('mood', {
   feeling: {
     type: Sequelize.STRING,
@@ -11,7 +13,18 @@ const Mood = db.define('mood', {
   },
   date: {
     type: Sequelize.DATE
+  }, 
+  score: {
+    type: Sequelize.INTEGER
   }
 })
+
+Mood.beforeCreate((mood, options) => {
+  return giphy.translate(mood.feeling).then(foundGif => {
+    console.log(foundGif);
+    mood.gif = foundGif.data.images.original.url;
+  });
+});
+
 
 module.exports = Mood;

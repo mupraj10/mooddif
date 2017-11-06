@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import sentiment from 'sentiment';
 
 //import action creators from store
-import { createMood, fetchMoodList } from "../store";
+import { createMood} from "../store";
 
 //semantic ui components
 import { Input } from "semantic-ui-react";
@@ -16,55 +16,14 @@ const giphy = require('giphy-api')('h2eVXfaZ7LbgsC9Xt8313wsWJMp4uebj');
 class MoodInput extends Component {
   constructor(props) {
     super(props);
-
-    // this.state = {
-    //   moodInput: '',
-    //   currentMood: '', 
-    //   sentimentValue: {}
-    // };
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount(){
-    this.props.getMoods()
-  }
 
-//   handleChange(evt){
-//       evt.preventDefault();
-//     const moodInput = evt.target.value;
-//         this.setState({ moodInput });
-//   }
-
-//  handleSubmit(evt) {
-//     evt.preventDefault();
-//     const currentMood = this.state.moodInput;
-//     const sentimentValue = sentiment(currentMood);
-//     console.dir(sentimentValue);
-
-
-
-// this.setState({ currentMood, sentimentValue});
-// this.setState({ moodInput:''});
-
-// const sentimentWord = sentimentValue.words.toString();
-
-// console.log('passed to GIPHY', currentMood)
-// giphy.translate(currentMood)
-// .then(res => console.dir(res.data))
-// .then(data => this.setState({gifUrl: data.bitly_gif_url}))
-
-
-// }
-// 
-
-  
 
   render() {
-    // const { currentMood, moodInput, sentimentValue } = this.state;
-    const { handleSubmit, moodList} = this.props;
-    
-    console.log(moodList);
+    const { handleSubmit, mood} = this.props;
+    console.log("trying to see single mood here", mood);
+
     
     return (
       <div>
@@ -73,16 +32,26 @@ class MoodInput extends Component {
         </form>
         {/* <Image src='https://giphy.com/embed/BqJc5y7Oq6wPS' /> */}
         {/* import component for the mood */}
-        <MoodCard />
+        <h1> current mood: </h1>
+
+        {mood && <MoodCard mood={mood} />}
+        
       </div>
     );
   }
 }
 
+// function sentimentValues(moodInput){
+//   const sentimentResult = sentiment(moodInput);
+//   return {
+    
+//   }
+// }
 
 const mapState = (state) => {
   return {
-    moodList: state.mood.moodList
+    moodList: state.mood.moodList, 
+    mood: state.mood.mood
   }
 }
 
@@ -90,16 +59,20 @@ const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt){
       evt.preventDefault();
-      console.log('in handleSubmit')
+      const feeling = evt.target.mood.value
+      const sentimentValue = sentiment(feeling);
+      
+
+      giphy.translate(feeling)
+      .then(res => console.log("gipy results", res.data))
+
       const newMood = {
-        feeling: evt.target.mood.value, 
-        date: Date.now()
+        feeling, 
+        date: new Date()
       }
-      console.log(newMood)
+      
+      console.log("dispatch", newMood)
       dispatch(createMood(newMood))
-    },
-    getMoods(){
-      dispatch(fetchMoodList());
     }
   }
 }
