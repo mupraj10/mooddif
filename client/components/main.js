@@ -12,7 +12,7 @@ import {logout} from '../store'
  */
 const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
-  console.dir(children)
+
   return (
     <div>
       <h1>Mood Meme</h1>

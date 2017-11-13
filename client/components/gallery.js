@@ -1,22 +1,28 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { connect } from "react-redux";
 import { Card } from 'semantic-ui-react'
 
 import MoodCard from './mood-card';
 
-const Gallery = (props) => {
-    const {moodList} = props
-  return (
-      <Card.Group> 
-      
-      {moodList.map(mood => 
-         <MoodCard key={mood.id} mood={mood} />)
+import {fetchMoodList} from '../store'
+
+
+class Gallery extends Component {
+    constructor(props){
+        super(props)
     }
 
+ 
 
-      
-      </Card.Group>
-)
+    render(){
+        const moodList = this.props.moodList
+     return (
+            <div> 
+            {moodList && (<Card.Group> {moodList.map(mood => <MoodCard key={mood.id} mood={mood} />)}</Card.Group>)}
+
+            </div>
+     )
+    } 
 }
 
 const mapState = (state) => {
@@ -25,4 +31,6 @@ const mapState = (state) => {
     }
 }
 
+
 export default connect(mapState)(Gallery);
+

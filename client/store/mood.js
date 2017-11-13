@@ -38,7 +38,7 @@ export const fetchMoodList = () =>
 dispatch =>
   axios.get(`/api/moods`)
   .then(res => dispatch(getMoodList(res.data)))
-  .then(error => console.log("this is an error",error));
+  .catch(error => console.log("this is an error",error));
 
 
 export const createMood = (mood) => dispatch =>
@@ -63,7 +63,7 @@ export default function (state = [], action) {
       return  Object.assign({}, state, { mood: action.mood})
 
     case GET_MOOD_LIST:
-      return Object.assign({}, state, { moodList: action.moodList})
+      return Object.assign({}, state, {moodList: action.moodList})
     
     case REMOVE_MOOD:
       return [...state.filter(mood => mood.id !== action.id)];
