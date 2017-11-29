@@ -21,7 +21,6 @@ const Mood = db.define('mood', {
 
 Mood.beforeCreate((mood, options) => {
   return giphy.translate(mood.feeling).then(foundGif => {
-    console.log(foundGif);
     mood.gif = foundGif.data.images.original.url;
   });
 });

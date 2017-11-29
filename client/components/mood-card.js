@@ -1,47 +1,40 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
 import moment from 'moment';
 
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Image } from 'semantic-ui-react'
+
+// import {removeMood}
 
 const MoodCard = (props) => {
+  const {remove, mood} = props
+
   return  (<Card>
-    <Image src={props.mood.gif} />
+    <Image src={mood.gif} />
     <Card.Content> 
       <Card.Description>
-      {moment(props.mood.date).format('MMMM Do YYYY')}
-      <br/> 
-        {props.mood.feeling}
-        
+      {moment(mood.date).format('MMMM Do YYYY')}
+      <br /> 
+        {mood.feeling}
+        <br />
+        {mood.score}
+        <button onClick={remove}>Delete</button>
       </Card.Description>
     </Card.Content>
   </Card> )
 }
 
-export default MoodCard;
+const mapState = null; 
 
-// <div class="tile is-ancestor">
-// <div class="tile is-parent">
-//   <article class="tile is-child box">
-//     <p class="title">One</p>
-//     <p class="subtitle">Subtitle</p>
-//   </article>
-// </div>
-// <div class="tile is-parent">
-//   <article class="tile is-child box">
-//     <p class="title">Two</p>
-//     <p class="subtitle">Subtitle</p>
-//   </article>
-// </div>
-// <div class="tile is-parent">
-//   <article class="tile is-child box">
-//     <p class="title">Three</p>
-//     <p class="subtitle">Subtitle</p>
-//   </article>
-// </div>
-// <div class="tile is-parent">
-//   <article class="tile is-child box">
-//     <p class="title">Four</p>
-//     <p class="subtitle">Subtitle</p>
-//   </article>
-// </div>
-// </div>
+const mapDispatch = (dispatch) => {
+  return {
+    remove(evt){
+      evt.preventDefault();
+      console.log('in delete')
+    }
+  }
+}
+
+
+export default connect(mapState, mapDispatch)(MoodCard);
+

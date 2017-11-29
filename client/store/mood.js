@@ -50,8 +50,6 @@ export const createMood = (mood) => dispatch =>
       .catch(error =>
         console.log(error))
 
-
-
 /**
  * REDUCER
  */

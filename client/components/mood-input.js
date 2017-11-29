@@ -21,32 +21,24 @@ class MoodInput extends Component {
 
 
   render() {
-    const { handleSubmit, mood} = this.props;
-    console.log("trying to see single mood here", mood);
-
+    const { handleSubmit,  mood} = this.props;
+  
     
     return (
       <div>
         <form onSubmit={handleSubmit} >
           <Input  fluid name="mood" name='mood'  placeholder="How are you feeling today?" />
         </form>
-        {/* <Image src='https://giphy.com/embed/BqJc5y7Oq6wPS' /> */}
-        {/* import component for the mood */}
+       
         <h1> current mood: </h1>
 
-        {mood && <MoodCard mood={mood} />}
+        {mood && <MoodCard  mood={mood} />}
         
       </div>
     );
   }
 }
 
-// function sentimentValues(moodInput){
-//   const sentimentResult = sentiment(moodInput);
-//   return {
-    
-//   }
-// }
 
 const mapState = (state) => {
   return {
@@ -61,17 +53,14 @@ const mapDispatch = (dispatch) => {
       evt.preventDefault();
       const feeling = evt.target.mood.value
       const sentimentValue = sentiment(feeling);
-      
-
-      giphy.translate(feeling)
-      .then(res => console.log("gipy results", res.data))
+      const score = sentimentValue.score;
 
       const newMood = {
-        feeling, 
+        score,
+        feeling,
         date: new Date()
       }
-      
-      console.log("dispatch", newMood)
+
       dispatch(createMood(newMood))
     }
   }
