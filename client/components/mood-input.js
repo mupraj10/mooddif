@@ -27,7 +27,7 @@ class MoodInput extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit} >
-          <Input  fluid name="mood" name='mood'  placeholder="How are you feeling today?" />
+          <Input fluid name="mood" name='mood'  placeholder="How are you feeling today?" />
         </form>
        
         <h1> current mood: </h1>
