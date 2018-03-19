@@ -11,9 +11,7 @@ class Gallery extends Component {
     constructor(props){
         super(props)
     }
-
  
-
     render(){
         const moodList = this.props.moodList
      return (
@@ -34,4 +32,6 @@ const mapState = (state) => {
 
 
 export default connect(mapState)(Gallery);
+
+
 
