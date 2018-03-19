@@ -13,14 +13,14 @@ import { createMood} from "../store";
 const giphyKey = process.env.GIPHY_KEY;
 const giphy = require('giphy-api')(giphyKey);
 
-const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+// const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
-const toneAnalyzer = new ToneAnalyzerV3({
-  username: '"012f55f2-2f8e-45ca-9ef8-ce03aeb19d72"',
-  password: 'JQsnPtXKd4RX',
-  version: '2017-09-21',
-  url: 'https://gateway.watsonplatform.net/tone-analyzer/api/'
-});
+// const toneAnalyzer = new ToneAnalyzerV3({
+//   username: '"012f55f2-2f8e-45ca-9ef8-ce03aeb19d72"',
+//   password: 'JQsnPtXKd4RX',
+//   version: '2017-09-21',
+//   url: 'https://gateway.watsonplatform.net/tone-analyzer/api/'
+// });
 
 class MoodInput extends Component {
   constructor(props) {
