@@ -28,7 +28,7 @@ passport.serializeUser((user, done) => done(null, user.id))
 passport.deserializeUser((id, done) =>
   db.models.user.findById(id)
     .then(user => done(null, user))
-    .catch(done))
+    .catch(done));
 
 const createApp = () => {
   // logging middleware
@@ -41,7 +41,7 @@ const createApp = () => {
   // compression middleware
   app.use(compression())
 
-  // session middleware with passport
+  // // session middleware with passport
   app.use(session({
     secret: process.env.SESSION_SECRET || 'my best friend is Cody',
     store: sessionStore,

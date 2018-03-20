@@ -22,7 +22,7 @@ class MoodInput extends Component {
     return (
       <div className="mw5 mw6-ns center home br3 pt3 ph3 pb1 ph5-ns">
         <form onSubmit={handleSubmit} >
-          <input className="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="mood-desc"  placeholder="How are you feeling today?" />
+          <input className="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="mood-desc" name='mood'  placeholder="How are you feeling today?" />
         </form>
 
         
