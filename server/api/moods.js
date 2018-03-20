@@ -9,7 +9,6 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  console.log('reqbody', req.body)
   Mood.create(req.body)
   .then(mood => res.status(201).json(mood));
 });

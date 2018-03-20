@@ -17,8 +17,8 @@ class Gallery extends Component {
     render(){
         const moodList = this.props.moodList
      return (
-            <div> 
-            {moodList && (<Card.Group> {moodList.map(mood => <MoodCard key={mood.id} mood={mood} />)}</Card.Group>)}
+            <div className="mw5 mw7-ns center pa3 ph5-ns"> 
+            {moodList && (<div> {moodList.map(mood => <MoodCard key={mood.id} mood={mood} />)}</div>)}
 
             </div>
      )

@@ -14,8 +14,8 @@ const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
 
   return (
-    <div>
-      <h1>Mood Meme</h1>
+    <div className='vh-100 dt w-100 bg-light-green'>
+      <div className='dtc v-mid tc white ph3 ph4-l'><h1>Mood Meme</h1> 
       <nav>
         {
           isLoggedIn
@@ -33,8 +33,9 @@ const Main = (props) => {
             </div>
         }
       </nav>
-      <hr />
+     
       {children}
+      </div>
     </div>
   )
 }
