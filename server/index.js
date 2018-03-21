@@ -27,7 +27,7 @@ if (process.env.NODE_ENV !== 'production') require('../secrets')
 passport.serializeUser((user, done) => done(null, user.id))
 passport.deserializeUser((id, done) =>
   db.models.user.findById(id)
-    .then(user => done(null, user))
+    .then(user =>  done(null, user))
     .catch(done));
 
 const createApp = () => {
@@ -41,7 +41,7 @@ const createApp = () => {
   // compression middleware
   app.use(compression())
 
-  // // session middleware with passport
+   // session middleware with passport
   app.use(session({
     secret: process.env.SESSION_SECRET || 'my best friend is Cody',
     store: sessionStore,

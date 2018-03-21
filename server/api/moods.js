@@ -8,6 +8,23 @@ router.get("/", (req, res, next) => {
     .catch(next);
 });
 
+router.get('/:moodId', (req, res, next) => {
+  Mood.findById(req.params.moodId)
+  .then(event => res.json(event))
+  .catch(next);
+});
+
+router.put('/:moodId', (req, res, next) => {
+  Mood.findById(req.params.moodId)
+  .then(mood => {
+      return mood.update(req.body)})
+  .then(updated => {
+      let updatedResponse = updated.dataValues;
+      res.send({message: 'Updated note sucessfully', updatedResponse})
+  })
+  .catch(next);
+})
+
 router.post("/", (req, res, next) => {
   Mood.create(req.body)
   .then(mood => res.status(201).json(mood));

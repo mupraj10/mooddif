@@ -4,7 +4,7 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, MoodInput, Gallery} from './components'
+import {Main, Login, Signup, UserHome, MoodInput, MoodChart, Gallery} from './components'
 import {me, fetchMoodList} from './store'
 
 /**
@@ -32,6 +32,7 @@ class Routes extends Component {
                   <Route path='/home' component={UserHome} />
                   <Route path='/newmood' component={MoodInput} />
                   <Route path='/gallery' component={Gallery} />
+                  <Route path='/moodcharts' component={MoodChart} />
                 </Switch>
             }
             {/* Displays our Login component as a fallback */}

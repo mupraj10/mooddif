@@ -13,15 +13,21 @@ const REMOVE_MOOD = "REMOVE_MOOD"
  * INITIAL STATE not being used 
  */
 const initialState = {
-  moodList:[],
-  singleMood:{}
+  moodList: [],
+  singleMood: {}
 }
 
 /**
  * ACTION CREATORS
  */
-const getNewMood = (mood) => ({type: GET_NEW_MOOD, mood})
-const getMoodList = (moodList) => ({type: GET_MOOD_LIST, moodList})
+const getNewMood = (mood) => ({
+  type: GET_NEW_MOOD,
+  mood
+})
+const getMoodList = (moodList) => ({
+  type: GET_MOOD_LIST,
+  moodList
+})
 
 /**
  * THUNK CREATORS
@@ -29,26 +35,35 @@ const getMoodList = (moodList) => ({type: GET_MOOD_LIST, moodList})
 
 export const fetchSingleMood = () =>
   dispatch =>
-    axios.get(`/api/moods`)
-    .then(res => dispatch(getNewMood(res.data)))
-    .then(error => console.log(error));
+  axios.get(`/api/moods`)
+  .then(res => dispatch(getNewMood(res.data)))
+  .then(error => console.log(error));
 
-    
+
 export const fetchMoodList = () =>
-dispatch =>
+  dispatch =>
   axios.get(`/api/moods`)
   .then(res => dispatch(getMoodList(res.data)))
-  .catch(error => console.log("this is an error",error));
+  .catch(error => console.log("this is an error", error));
 
 
 export const createMood = (mood) => dispatch =>
-    axios.post(`/api/moods`, mood)
-      .then(res => {
-        dispatch(getNewMood(res.data))
-        // history.push('/gallery')
-      })
-      .catch(error =>
-        console.log(error))
+  axios.post(`/api/moods`, mood)
+  .then(res => {
+    dispatch(getNewMood(res.data))
+    // history.push('/gallery')
+  })
+  .catch(error =>
+    console.log(error))
+
+export const changeMoodGif = (moodId, gif) => (dispatch) =>
+   axios.put(`/api/moods/${moodId}`, gif)
+      .then(res => dispatch(fetchMoodList(res.data)))
+      .catch(error => {
+        console.log(error)
+      });
+  
+
 
 /**
  * REDUCER
@@ -58,11 +73,15 @@ export default function (state = [], action) {
   switch (action.type) {
 
     case GET_NEW_MOOD:
-      return  Object.assign({}, state, { mood: action.mood})
+      return Object.assign({}, state, {
+        mood: action.mood
+      })
 
     case GET_MOOD_LIST:
-      return Object.assign({}, state, {moodList: action.moodList})
-    
+      return Object.assign({}, state, {
+        moodList: action.moodList
+      })
+
     case REMOVE_MOOD:
       return [...state.filter(mood => mood.id !== action.id)];
 
@@ -70,5 +89,3 @@ export default function (state = [], action) {
       return state
   }
 }
-
-

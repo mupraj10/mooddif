@@ -6,7 +6,7 @@ import sentiment from 'sentiment';
 //import action creators from store
 import { createMood} from '../store';
 
-import MoodCard from './mood-card';
+import CurrentMood from './current-mood';
 
 
 class MoodInput extends Component {
@@ -22,12 +22,12 @@ class MoodInput extends Component {
     return (
       <div className="mw5 mw6-ns center home br3 pt3 ph3 pb1 ph5-ns">
         <form onSubmit={handleSubmit} >
-          <input className="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="mood-desc" name='mood'  placeholder="How are you feeling today?" />
+          <input className="input-reset ba pa2 mb2 db w-100 f6 " type="text" aria-describedby="mood-desc" name='mood' maxLength="10" placeholder="Use one word to describe how you are feeling." />
         </form>
 
-        
 
-        {mood && <div> <h1> current mood: </h1> <MoodCard  mood={mood} /> </div>}
+        {mood && <div> <span className='f4'> mood gif: </span> <CurrentMood mood={mood} /> </div>
+      }
 
       </div>
     );

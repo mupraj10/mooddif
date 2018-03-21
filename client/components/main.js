@@ -12,19 +12,21 @@ import {logout} from '../store'
  */
 const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
+  const linkStyle = 'f3 ma1 pa1'
 
   return (
     <div className='vh-100 dt w-100 bg-light-green'>
-      <div className='dtc v-mid tc white ph3 ph4-l'><h1>Mood Meme</h1> 
+      <div className=' f2 tc dark-gray'><h1 className='pa1 ma0 '>Mood Meme</h1> 
       <nav>
         {
           isLoggedIn
             ? <div>
               {/* The navbar will show these links after you log in */}
-              <Link to='/home'>Home</Link>
-              <Link to='/newmood'>Today's Mood</Link>
-              <Link to='/gallery'> Mood Gallery </Link>
-              <a href='#' onClick={handleClick}>Logout</a>
+              <Link className={linkStyle} to='/home'>Home</Link>
+              <Link className={linkStyle} to='/newmood'>Today's Mood</Link>
+              <Link className={linkStyle} to='/gallery'> Mood Gallery </Link>
+              <Link className={linkStyle} to='/moodcharts'> Charts </Link>
+              <a className={linkStyle} href='#' onClick={handleClick}>Logout</a>
             </div>
             : <div>
               {/* The navbar will show these links before you log in */}

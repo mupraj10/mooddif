@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const giphyKey = process.env.GIPHY_KEY
+const giphy = require('giphy-api')(giphyKey);
 
-const giphy = require('giphy-api')('h2eVXfaZ7LbgsC9Xt8313wsWJMp4uebj');
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
 var toneAnalyzer = new ToneAnalyzerV3({
