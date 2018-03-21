@@ -3,7 +3,7 @@ const { Mood } = require("../db/models");
 module.exports = router;
 
 router.get("/", (req, res, next) => {
-  Mood.findAll()
+  Mood.findAll({order: [['createdAt', 'DESC']]})
     .then(moodList => res.json(moodList))
     .catch(next);
 });
