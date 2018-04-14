@@ -20,5 +20,5 @@ This app manages daily moods with a Gif and data visualization of the semantic a
 * Sentiment.js
 * D3.js
 
-##Get Started
+## Get Started
 Fork and clone the repo  `npm install` and then `npm run start-dev` to get it running! 
