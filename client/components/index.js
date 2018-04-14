@@ -9,4 +9,6 @@ export {Login, Signup} from './auth-form'
 export {default as MoodInput} from './mood-input';
 export {default as Gallery} from './gallery';
 export {default as MoodCard} from './mood-card';
+export {default as MoodChart} from './mood-chart';
+export {default as CurrentMood} from './current-mood'
 

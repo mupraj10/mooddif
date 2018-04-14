@@ -26,8 +26,8 @@ if (process.env.NODE_ENV !== 'production') require('../secrets')
 passport.serializeUser((user, done) => done(null, user.id))
 passport.deserializeUser((id, done) =>
   db.models.user.findById(id)
-    .then(user => done(null, user))
-    .catch(done))
+    .then(user =>  done(null, user))
+    .catch(done));
 
 const createApp = () => {
   // logging middleware
@@ -40,7 +40,7 @@ const createApp = () => {
   // compression middleware
   app.use(compression())
 
-  // session middleware with passport
+   // session middleware with passport
   app.use(session({
     secret: process.env.SESSION_SECRET || 'my best friend is Cody',
     store: sessionStore,
@@ -74,6 +74,10 @@ const startListening = () => {
   // start listening (and create a 'server' object representing our server)
   const server = app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`))
 
+<<<<<<< HEAD
+=======
+  
+>>>>>>> dc92b123b7b16eac3c2a361417a694e283fc6ccc
 }
 
 const syncDb = () => db.sync()
