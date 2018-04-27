@@ -16,9 +16,14 @@ This app manages daily moods with a Gif and data visualization of the semantic a
 * HTML
 * React.js
 * React-Redux
-* GIFPHY API
+* GIPHY API
 * Sentiment.js
 * D3.js
 
 ## Get Started
 Fork and clone the repo  `npm install` and then `npm run start-dev` to get it running! 
+
+## Secrets 
+You will need to create a secrets file for the following keys: 
+* Giphy developer account to get a key 
+* You might need to add in Google Oauth Keys since it is in the process of being implemented.
