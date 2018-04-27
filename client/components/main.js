@@ -16,7 +16,7 @@ const Main = (props) => {
 
   return (
     <div className='vh-100 dt w-100 bg-light-green'>
-      <div className=' f2 tc dark-gray'><h1 className='pa1 ma0 '>Mood Meme</h1> 
+      <div className=' f2 tc dark-gray'><h1 className='pa1 ma0 '>Mood Difs</h1> 
       <nav>
         {
           isLoggedIn

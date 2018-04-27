@@ -14,18 +14,18 @@ const AuthForm = (props) => {
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor='email'><small>Email</small></label>
-          <input name='email' type='text' />
+          <input name='email' type='text'  className='input-reset ba f4 b--black-20 mb2 db w-100 '/>
         </div>
         <div>
           <label htmlFor='password'><small>Password</small></label>
-          <input name='password' type='password' />
+          <input name='password' type='password' className='input-reset ba f4 b--black-20  mb2 db w-100' />
         </div>
         <div>
-          <button type='submit'>{displayName}</button>
+          <button type='submit' className='f4' >{displayName}</button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href='/auth/google'>{displayName} with Google</a>
+     
     </div>
   )
 }
@@ -77,3 +77,6 @@ AuthForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
 }
+
+
+// <a href='/auth/google'>{displayName} with Google</a>
